@@ -3,33 +3,33 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Assassin\'s Creed' });
 });
 
 
-/*Эцио Аудиторе да Фиренце*/
+/*Р­С†РёРѕ РђСѓРґРёС‚РѕСЂРµ РґР° Р¤РёСЂРµРЅС†Рµ*/
 router.get('/ezio', function(req, res, next) {
-  res.send("<h1>Эцио Аудиторе да Фиренце</h1>");
+  res.send("<h1>Р­С†РёРѕ РђСѓРґРёС‚РѕСЂРµ РґР° Р¤РёСЂРµРЅС†Рµ</h1>");
 });
 
-/*Марио Аудиторе*/
+/*РњР°СЂРёРѕ РђСѓРґРёС‚РѕСЂРµ*/
 router.get('/mario', function (req, res, next) {
-    res.send("<h1>Марио Аудиторе</h1>");
+    res.send("<h1>РњР°СЂРёРѕ РђСѓРґРёС‚РѕСЂРµ</h1>");
 });
 
-/*Юсуф Тазим*/
+/*Р®СЃСѓС„ РўР°Р·РёРј*/
 router.get('/yusuf', function (req, res, next) {
-    res.send("<h1>Юсуф Тазим</h1>");
+    res.send("<h1>Р®СЃСѓС„ РўР°Р·РёРј</h1>");
 });
 
-/*София Сартор*/
+/*РЎРѕС„РёСЏ РЎР°СЂС‚РѕСЂ*/
 router.get('/sofia', function (req, res, next) {
-    res.send("<h1>София Сартор</h1>");
+    res.send("<h1>РЎРѕС„РёСЏ РЎР°СЂС‚РѕСЂ</h1>");
 });
 
-/*Дезмонд Майлс*/
+/*Р”РµР·РјРѕРЅРґ РњР°Р№Р»СЃ*/
 router.get('/desmond', function (req, res, next) {
-    res.send("<h1>Дезмонд Майлс</h1>");
+    res.send("<h1>Р”РµР·РјРѕРЅРґ РњР°Р№Р»СЃ</h1>");
 });
 
 
