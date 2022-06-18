@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <header>         
-    <div class="logo">
-    <a href="/"> 
-    <img src="" width="70" />
-    </a>
-  </div>
-  <div class="menu">
-    <ul>
-      <li><a href="/heroes/ezio">Эцио</a></li>
-      <li><a href="/heroes/yusuf">Юсуф</a></li>
-      <li><a href="/heroes/mario">Марио</a></li>
-      <li><a href="/heroes/sofia">София</a></li>
-      <li><a href="/heroes/desmond">Дезмонд</a></li>
-    </ul>
-  </div>
-  <div class="tel"><a class="rmenu" href="/">Exit</a>
-  </div>
-</header>
+  <head>
+    <header>
+      <div class="logo">
+      <a href="/"> 
+      <img src="" width="70" />
+      </a>
+    </div>
+    <div class="menu">
+      <ul>
+        <% menu.forEach(function(hero){ %>
+          <li><a href="/heroes/<%=hero.nick%>"><%=hero.title%></a></li>
+          <% }) %>
+      </ul>
+    </div>
+    <div class="tel"><a class="rmenu" href="/">Выход</a>
+    </div>
+  </header>
 </header>
 <title>
 
 </title>
 <link rel='stylesheet' href='/stylesheets/style.css' />
 <link href="/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
-<script src="/jquery/dist/jquery.js"></script>
 <script src="/bootstrap/dist/js/bootstrap.js"></script> </head>
-</head>
-<body>
+  </head>
+  <body>
     <%- body %>
-</body>
+  </body>
 </html>
+ <body>
