@@ -9,7 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var heroes = require('./routes/heroes');
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/all')
+mongoose.connect('mongodb://localhost/AC')
 
 
 var app = express();
