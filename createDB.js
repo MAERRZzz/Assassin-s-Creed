@@ -14,17 +14,18 @@
 //     })
 // })
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/test')
+mongoose.connect('mongodb://localhost/AC')
+var Hero = require("./models/hero").Hero
 
-var schema = mongoose.Schema({ name: String })
-
-schema.methods.meow = function(){
-    console.log(this.get("name") + " сказал мяу")
-}
-
-var Cat = mongoose.model('Cat', schema)
-
-var kitty = new Cat({ name: 'Пушок' })
-kitty.save(function (err) {
-    kitty.meow()
+var hero = new Hero({
+    title: "Катерина Сфорца",
+    nick: "Ассасин"
 })
+
+hero.save(function(err, hero, affected){
+    console.log(hero.title)
+})
+
+
+
+
