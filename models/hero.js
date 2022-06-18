@@ -2,6 +2,11 @@ var mongoose = require('mongoose')
 
 var heroSchema = mongoose.Schema({
     title: String,
+    nick: {
+        type: String,
+        unique: true,
+        required: true
+    },
     avatar: String,
     desc: String,
     created:{

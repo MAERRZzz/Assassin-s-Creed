@@ -3,7 +3,16 @@ var data = require('./data.js').data;
 
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/AC')
-var Hero = require("./models/hero").Hero
+
+async.series([
+        open,
+        dropDatabase,
+        requireModels,
+        createHeroes
+    ],
+    function(err,result){
+        mongoose.disconnect()
+    })
 
 function open(callback){
     mongoose.connection.on("open",callback)
@@ -22,17 +31,11 @@ function createHeroes(callback){
         callback)
 }
 
-function close(callback){
-    mongoose.disconnect(callback)
-}
+function requireModels(callback){
+    require("./models/hero").Hero
 
-async.series([
-    open,
-    dropDatabase,
-    createHeroes,
-    close
-],
-function(err,result){
-    if(err) throw err
-    console.log("ok")
-})
+    async.each(Object.keys(mongoose.models),function(modelName){
+        mongoose.models[modelName].ensureIndexes(callback)
+    },
+        callback)
+}
