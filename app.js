@@ -11,6 +11,7 @@ var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/AC')
 var session = require('express-session');
 var MongoStore = require('connect-mongo');
+var Hero = require("./models/hero").Hero
 
 var app = express();
 
@@ -36,6 +37,8 @@ app.use(function (req, res, next) {
   next()
 })
 
+app.use(require("./middleware/createMenu.js"))
+
 app.use('/', routes);
 app.use('/users', users);
 
@@ -52,7 +55,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', {title:'Ошибка'});
 });
 
 // view engine setup
@@ -60,8 +63,5 @@ app.engine('ejs',require('ejs-locals'));
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 app.set('view engine', 'ejs');
-
-
-
 
 module.exports = app;
