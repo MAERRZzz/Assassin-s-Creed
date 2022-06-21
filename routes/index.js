@@ -12,5 +12,8 @@ router.get('/', function(req, res, next) {
         });
     })
 });
+router.get('/', function(req, res, next) {
+    res.cookie('greeting', 'Hi!!!').render('index', { title: 'Assassin\'s Creed', menu:menu });
+});
 
 module.exports = router;
