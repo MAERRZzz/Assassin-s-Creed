@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 
 /* GET login/registration page. */
 router.get('/logreg', function(req, res, next) {
-  res.render('logreg',{title: 'Вход'});
+    res.render('logreg',{title: 'Вход', error: null});
 });
 
 /* POST login/registration page. */
@@ -24,20 +24,26 @@ router.post('/logreg', function(req, res, next) {
     if(err) return next(err)
     if(user){
       if(user.checkPassword(password)){
-        req.session.user = user._id
+        req.session.user = user
         res.redirect('/')
       } else {
-        res.render('logreg', {title: 'Вход'})
+        res.render('logreg', {title: 'Вход', error: 'Неверный логин/пароль'})
       }
     } else {
       var user = new User({username:username,password:password})
             user.save(function(err,user){
                 if(err) return next(err)
-                req.session.user = user._id
+                req.session.user = user
                 res.redirect('/')
             })     
     }
 })
 });
+// /* GET auth page. */
+// router.get('/logreg', function(req, res, next) {
+//     res.render('logreg',{error:null});
+//     res.render('logreg',{error:"Неверный логин/пароль"});
+// });
+
 
 module.exports = router;
