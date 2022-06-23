@@ -3,36 +3,37 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var heroes = require('./routes/heroes');
-
-var routes = require('./routes/index');
-var users = require('./routes/users');
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/AC')
-var session = require('express-session');
+var session = require("express-session")
 var MongoStore = require('connect-mongo');
-var Hero = require("./models/hero").Hero
+var Cat = require("./models/hero").Cat;
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var heroesRouter = require('./routes/heroes');
 
 var app = express();
 
 // view engine setup
-app.engine('ejs', require('ejs-locals'));
+app.engine('ejs',require('ejs-locals'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use('/heroes', heroes);
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
+
 app.use(session({
   secret: "AC",
-  cookie: { maxAge: 60 * 1000 },
-  store: MongoStore.create({ mongoUrl: 'mongodb://localhost/AC' })
+  cookie:{maxAge:60*1000},
+  store: MongoStore.create({mongoUrl: 'mongodb://localhost/AC'})
 }))
 
-app.use(function (req, res, next) {
+app.use(function(req,res,next){
   req.session.counter = req.session.counter + 1 || 1
   next()
 })
@@ -40,8 +41,9 @@ app.use(function (req, res, next) {
 app.use(require("./middleware/createMenu.js"))
 app.use(require("./middleware/createUser.js"))
 
-app.use('/', routes);
-app.use('/users', users);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/heroes', heroesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -58,11 +60,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {title:'Ошибка'});
 });
-
-// view engine setup
-app.engine('ejs',require('ejs-locals'));
-app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, 'bower_components')));
-app.set('view engine', 'ejs');
 
 module.exports = app;
