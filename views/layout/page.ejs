@@ -16,8 +16,11 @@
       <!-- <div class="container-fluid"> -->
         <div class="menu">
         <ul class="navbar-nav">   
-          <li>
-            <a class="login" href="/">Главная</a>          
+          <li class="nav-item">
+            <a href="/">Главная</a>
+
+            <!-- <ul><li><a href="/logreg">Войти</a></li></ul>  -->
+
           </li>
           <% if(typeof nav=='object' && nav){ nav.forEach(function(item){ %>
             <li class="nav-item">
@@ -28,16 +31,18 @@
             <% })} %>
         </ul>
       </div>
+
       <ul class="navbar-nav navbar-right">
-      <%if(user){%>
-          <form action="/logout" method="post">
-            <li><button type="submit" class="login">Выйти</button></li>
-       </form>
-      <% } else { %>
-      <a class="login" href="/logreg">Войти</a>
-     <% } %>
-      </li>
-    </ul>
+        <%if(user){%>
+            <form action="/logout" method="post">
+              <li><button type="submit" class="login">Выйти</button></li>
+         </form>
+        <% } else { %>
+        <a class="login" href="/logreg">Войти</a>
+       <% } %>
+        </li>
+      </ul>
+
     </nav>
     <%- body %>
   </body>
