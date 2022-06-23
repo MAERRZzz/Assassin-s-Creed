@@ -33,5 +33,8 @@ userSchema.virtual("password").set(function(password){
 userSchema.methods.encryptPassword = function(password){
     return crypto.createHmac('sha1', this.salt).update(password).digest('hex')
 }
+userSchema.methods.checkPassword = function(password){
+    return this.encryptPassword(password) === this.hashedPassword
+}
 
 module.exports.User = mongoose.model("User",userSchema)

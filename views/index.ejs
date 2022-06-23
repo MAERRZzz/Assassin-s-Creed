@@ -2,4 +2,9 @@
 
 <h1><%= title %></h1>
 <p>Welcome to <%= title %></p>
+<% if(user) {%>
+    <h1>Hoşgeldin﻿, kardeşim, <%= user.username %>!</h1>
+    <%  } else { %>
+    <h1>Зарегистрируйтесь, чтобы видеть все страницы сайта</h1>
+    <% } %>
 <p>Счетчик: <%= counter %></p>
